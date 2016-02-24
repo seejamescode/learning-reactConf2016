@@ -1,0 +1,72 @@
+# Managing App State
+Relay, Redux, Om
+
+What's the problem?
+
+- React is the V in MVC
+- M(data) V(present data) C(manage data)
+- Do we just not model or control?
+
+Current Solutions:
+
+- Flux (May 2014)
+- Relay (Feb 2015)
+- Redux (May 2015)
+
+## Redux is a Winner
+
+Setup
+
+- Action Creators - describe state mutations
+- Reducers - take the current state and action to return a new state
+
+Benefits
+
+- Declaritive
+- Immutable state
+- Parents know nothing about child's data needs
+- Mutation logic separate from the views
+- Super nice for testing
+
+Costs
+
+- Creating a new action requires touching 3+ files
+
+## Re-frame
+A ClojureScript library similar to redux
+
+Benefits
+
+- Subscriptions separate "deriving view data" from the views
+- Subscriptions memorize, so less redundant work is done
+
+Costs
+
+- More complexity
+
+## Relay
+What Facebook currently uses. Requires a lot more setup because it utilizes GraphQL.
+
+The extra work you do for mutations here by adding Redux outweighs the cons with benefits in the long run. This is only if starting from the ground up however. It is too difficult to transform a lot of database to allow GraphQL later on.
+
+## Om/next
+This is like relay, but for Closure with GraphQL.
+
+Benefits
+
+- Custom query resolution
+- Both client and remote state fully supported
+- Fairly server agnostic
+- Very flexible
+
+Costs
+
+- Less optimized than Relay
+- Still under development with various loose ends
+- Clojurescript
+
+## Final Recommendations
+
+- Have conventions set at the beginning
+- Use pure components that just receive props
+- Examine tradeoffs of all of these models
